@@ -56,18 +56,43 @@ app.post("/crear", async function (req, res) {
 });
 
 
-/*//Ruta para EDITAR un nuevo articulo:
-app.get("/modificar/:id_tarjetas" , function(req, res){
+//Ruta para "Vermas" detalles del articulo:
+app.get("/mostrar/:id_tarjetas" , async function(req, res){
   var id = req.params.id_tarjetas;
-
+  
+  var tarjeta = await Tarjeta.findById(id);
+  res.render("formularios_completos",{
+    documento: tarjeta,
+  });
+    //doc: tarjeta, //le estoy mandando el documento que encontre el la DB, "doc" es como lo voy a recibir en el archivo editar y "tarea" es la variable que estoy creando para buscar en la DB.
 });
 
 
-//Ruta dinamica:
-app.get("/paso/:nombre", function (req, res) {
-  var name = req.params.nombre;
-  res.render("index"), { persona: name };
-});*/
+//Ruta para "Editar el documento":
+app.get("/modificar/:id_tarjetas", async function(req, res){
+  var id= req.params.id_tarjetas;
+  var tarjeta = await Tarjeta.findById(id);
+  res.render("editar",{
+      doc: tarjeta,
+  });
+
+});
+app.post("/modificar/:id_tarjetas", async function(req, res){
+  var id = req.params.id_tarjetas;
+
+  var tarjeta = await Tarjeta.updateOne({_id: id}, req.body);
+  res.redirect("/inicio");
+
+});
+
+//Ruta para Eliminar el articulo:
+app.get("/modificar/eliminar/:id_tarjetas", async function(req, res){
+  var id= req.params.id_tarjetas;
+  var tarjeta = await Tarjeta.findById(id);
+  await tarjeta.remove();
+  res.redirect("/inicio");
+});
 
 
-app.listen(3000);
+
+app.listen(5400);

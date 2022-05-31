@@ -1,0 +1,67 @@
+<%- include('_header.ejs') %>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<style>
+  body {
+    background: rgb(245, 245, 245);
+
+  }
+  .btn{
+    background: #ee5544;
+    border: none;
+  }
+  .btn:hover{
+    background: #eb3420;
+    border: none;
+  }
+  .card{
+    width: 70vw;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+  }
+  .card-img-top{
+    width: 55vw;
+  }
+  .cuerpo-blog{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .imagen-articulo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card-title{
+    color: #737e87;
+  }
+</style>
+
+<body>
+
+<div class="cuerpo-blog">
+<div class="row">
+    <div class="col-sm-4">
+      <div class="card" style="margin: 20px;">
+        <div class="card-body">
+          <h5 class="card-title"><%= documento.titulo %></h5>
+          <div class="imagen-articulo">
+          <img src="<%= documento.url %>" class="card-img-top" alt="...">
+          </div>
+          <br>
+          <p class="card-title">Autor: <%= documento.autor %></p>
+          <p class="card-title">Fecha: <%= documento.fecha %></p>
+          <p class="card-title"><%= documento.texto %></p>
+          <p class="card-title">Categoria: <%= documento.categoria %></p>
+          <p class="card-title">Etiquetas: <%= documento.etiqueta %></p>
+          <a href="/inicio" class="btn btn-danger">Regresar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <%- include('_footer.ejs') %>
